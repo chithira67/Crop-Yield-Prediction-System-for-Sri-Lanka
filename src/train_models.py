@@ -206,6 +206,27 @@ def train_xgboost(X_train, y_train, X_test, y_test, feature_names):
     return best_xgb, test_metrics, feature_importance
 
 
+def sanitize_feature_names(feature_names):
+    """
+    Sanitize feature names for LightGBM compatibility
+    LightGBM doesn't support special JSON characters in feature names
+    
+    Args:
+        feature_names: List of feature names
+        
+    Returns:
+        List of sanitized feature names
+    """
+    import re
+    sanitized = []
+    for name in feature_names:
+        # Replace special characters with underscores
+        # Keep alphanumeric, underscores, and dots
+        sanitized_name = re.sub(r'[^a-zA-Z0-9_.]', '_', str(name))
+        sanitized.append(sanitized_name)
+    return sanitized
+
+
 def train_lightgbm(X_train, y_train, X_test, y_test, feature_names):
     """
     Train LightGBM model with hyperparameter tuning
@@ -223,6 +244,26 @@ def train_lightgbm(X_train, y_train, X_test, y_test, feature_names):
     print("\n" + "=" * 50)
     print("Training LightGBM Model")
     print("=" * 50)
+    
+    # Sanitize feature names for LightGBM compatibility
+    sanitized_feature_names = sanitize_feature_names(feature_names)
+    
+    # Create copies of DataFrames with sanitized column names
+    # Map original names to sanitized names
+    name_mapping = dict(zip(feature_names, sanitized_feature_names))
+    
+    if isinstance(X_train, pd.DataFrame):
+        X_train_lgb = X_train.copy()
+        X_train_lgb = X_train_lgb.rename(columns=name_mapping)
+    else:
+        # If it's a numpy array, convert to DataFrame
+        X_train_lgb = pd.DataFrame(X_train, columns=sanitized_feature_names)
+    
+    if isinstance(X_test, pd.DataFrame):
+        X_test_lgb = X_test.copy()
+        X_test_lgb = X_test_lgb.rename(columns=name_mapping)
+    else:
+        X_test_lgb = pd.DataFrame(X_test, columns=sanitized_feature_names)
     
     # Define parameter grid
     param_grid = {
@@ -249,23 +290,23 @@ def train_lightgbm(X_train, y_train, X_test, y_test, feature_names):
         verbose=1
     )
     
-    random_search.fit(X_train, y_train)
+    random_search.fit(X_train_lgb, y_train)
     
     # Best model
     best_lgb = random_search.best_estimator_
     print(f"\nBest parameters: {random_search.best_params_}")
     
-    # Predictions
-    y_train_pred = best_lgb.predict(X_train)
-    y_test_pred = best_lgb.predict(X_test)
+    # Predictions (use sanitized DataFrames)
+    y_train_pred = best_lgb.predict(X_train_lgb)
+    y_test_pred = best_lgb.predict(X_test_lgb)
     
     # Evaluation
     train_metrics = evaluate_model(y_train, y_train_pred, "LightGBM (Train)")
     test_metrics = evaluate_model(y_test, y_test_pred, "LightGBM (Test)")
     
-    # Feature importance
+    # Feature importance (map back to original feature names)
     feature_importance = pd.DataFrame({
-        'feature': feature_names,
+        'feature': feature_names,  # Use original names for output
         'importance': best_lgb.feature_importances_
     }).sort_values('importance', ascending=False)
     

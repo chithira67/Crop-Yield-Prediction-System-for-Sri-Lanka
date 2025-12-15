@@ -1,0 +1,68 @@
+feature,importance
+yield_rolling_mean_3,0.8314367
+crop_Carrots and turnips,0.056733217
+yield_lag2,0.04576815
+crop_Plantains and cooking bananas,0.023727637
+yield_lag1,0.009242311
+crop_Leeks and other alliaceous vegetables,0.0065982584
+yield_rolling_std_3,0.006288965
+year,0.0025991944
+crop_Cauliflowers and broccoli,0.0015879822
+"crop_Pumpkins, squash and gourds",0.0014703574
+"crop_Chillies and peppers, green (Capsicum spp. and Pimenta spp.)",0.0012545697
+year_cos,0.0012255282
+"crop_Mangoes, guavas and mangosteens",0.0010852035
+crop_encoded,0.00093458325
+crop_Potatoes,0.00083365495
+"crop_Cassava, fresh",0.00081658084
+humidity,0.0008143296
+"crop_Ginger, raw",0.0007714495
+crop_Lemons and limes,0.0007138954
+crop_Pineapples,0.0005294544
+crop_Sorghum,0.0005162064
+temperature,0.00051272137
+crop_Avocados,0.0005111084
+year_sin,0.00050322217
+crop_Mustard seed,0.00042436476
+crop_Sweet potatoes,0.0003804698
+"crop_Cashew nuts, in shell",0.0003453371
+crop_Cucumbers and gherkins,0.0003118052
+rainfall,0.00022379913
+"crop_Edible roots and tubers with high starch or inulin content, n.e.c., fresh",0.00019535075
+"crop_Onions and shallots, dry (excluding dehydrated)",0.00017737572
+"crop_Other fibre crops, raw, n.e.c.",0.00016705916
+temp_humidity_interaction,0.00014684263
+"crop_Other fruits, n.e.c.",0.00012592276
+crop_Tea leaves,0.00010823929
+"crop_Cloves (whole stems), raw",0.00010156135
+crop_Eggplants (aubergines),9.691448e-05
+crop_Maize (corn),8.736182e-05
+crop_Cocoa beans,7.217058e-05
+"crop_Other beans, green",6.821646e-05
+crop_Soya beans,6.30778e-05
+crop_Rice,5.6943492e-05
+crop_Okra,5.395248e-05
+"crop_Other vegetables, fresh n.e.c.",5.370782e-05
+"crop_Coconuts, in shell",5.0369297e-05
+crop_Cantaloupes and other melons,4.9640938e-05
+"crop_Nutmeg, mace, cardamoms, raw",4.7261372e-05
+rainfall_temp_interaction,4.548597e-05
+crop_Cabbages,3.7348567e-05
+"crop_Groundnuts, excluding shelled",3.407616e-05
+year_normalized,0.0
+"crop_Coffee, green",0.0
+"crop_Cinnamon and cinnamon-tree flowers, raw",0.0
+"crop_Cow peas, dry",0.0
+"crop_Beans, dry",0.0
+crop_Areca nuts,0.0
+district_encoded,0.0
+crop_Millet,0.0
+crop_Oranges,0.0
+"crop_Pepper (Piper spp.), raw",0.0
+"crop_Other stimulant, spice and aromatic crops, n.e.c.",0.0
+crop_Natural rubber in primary forms,0.0
+crop_Sesame seed,0.0
+crop_Sugar cane,0.0
+crop_Unmanufactured tobacco,0.0
+crop_Tomatoes,0.0
+rainfall_humidity_interaction,0.0

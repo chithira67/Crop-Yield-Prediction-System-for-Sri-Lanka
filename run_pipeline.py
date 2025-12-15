@@ -1,6 +1,12 @@
 import os
 import sys
 
+# Set UTF-8 encoding for Windows console compatibility
+if sys.platform == 'win32':
+    import io
+    sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8', errors='replace')
+    sys.stderr = io.TextIOWrapper(sys.stderr.buffer, encoding='utf-8', errors='replace')
+
 def main():
     """Run the complete pipeline"""
     print("=" * 60)
@@ -13,9 +19,9 @@ def main():
     try:
         from src.data_processing import process_data
         processed_df, crop_enc, district_enc, scaler_obj = process_data()
-        print("✓ Data processing completed successfully!")
+        print("[OK] Data processing completed successfully!")
     except Exception as e:
-        print(f"✗ Error in data processing: {str(e)}")
+        print(f"[ERROR] Error in data processing: {str(e)}")
         return
     
     # Step 2: Model Training
@@ -24,12 +30,12 @@ def main():
     try:
         from src.train_models import train_all_models
         results = train_all_models()
-        print("✓ Model training completed successfully!")
+        print("[OK] Model training completed successfully!")
         print(f"\nBest Model: {results['best_model_name'].upper()}")
         print(f"Best RMSE: {results['metrics'][results['best_model_name']]['RMSE']:.4f}")
         print(f"Best R²: {results['metrics'][results['best_model_name']]['R²']:.4f}")
     except Exception as e:
-        print(f"✗ Error in model training: {str(e)}")
+        print(f"[ERROR] Error in model training: {str(e)}")
         return
     
     print("\n" + "=" * 60)

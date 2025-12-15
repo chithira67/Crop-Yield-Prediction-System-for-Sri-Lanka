@@ -1,0 +1,68 @@
+feature,importance
+yield_rolling_mean_3,0.5938372481325543
+crop_Sugar cane,0.3565235117692538
+yield_lag1,0.027969152652174877
+yield_lag2,0.012229262890326768
+yield_rolling_std_3,0.0032287903983025373
+crop_encoded,0.0025027120631111724
+crop_Cabbages,0.0015550880792678835
+crop_Carrots and turnips,0.0006679328803476769
+crop_Plantains and cooking bananas,0.0003037983530227579
+year_cos,0.0001943915478845727
+year,0.00012706910775749458
+year_normalized,0.00010929696527377747
+year_sin,7.727779028963382e-05
+crop_Leeks and other alliaceous vegetables,5.7214561734140985e-05
+"crop_Mangoes, guavas and mangosteens",4.527177940276489e-05
+"crop_Pumpkins, squash and gourds",4.123294851355698e-05
+crop_Pineapples,4.034209779727532e-05
+crop_Eggplants (aubergines),3.4568325049715976e-05
+crop_Rice,3.2630478676410105e-05
+humidity,3.0553803556789566e-05
+"crop_Onions and shallots, dry (excluding dehydrated)",2.9780970109296357e-05
+crop_Cauliflowers and broccoli,2.7806388954816134e-05
+"crop_Ginger, raw",2.3432878759278596e-05
+"crop_Chillies and peppers, green (Capsicum spp. and Pimenta spp.)",2.2063339437766996e-05
+"crop_Coconuts, in shell",2.0323420301458515e-05
+rainfall,1.9003718181339293e-05
+crop_Cantaloupes and other melons,1.844117179630704e-05
+crop_Lemons and limes,1.8405164019557133e-05
+crop_Mustard seed,1.6695544432675776e-05
+rainfall_temp_interaction,1.6198780701644262e-05
+crop_Maize (corn),1.5949909909028016e-05
+crop_Tea leaves,1.5661227558841858e-05
+temp_humidity_interaction,1.4720852474094758e-05
+rainfall_humidity_interaction,1.434801833867276e-05
+crop_Cucumbers and gherkins,1.427639624668176e-05
+temperature,1.3961045086354859e-05
+crop_Sweet potatoes,1.2678803785675301e-05
+"crop_Other beans, green",1.079228901987693e-05
+"crop_Cashew nuts, in shell",1.0117291730140018e-05
+crop_Okra,7.376910165276589e-06
+"crop_Groundnuts, excluding shelled",5.9155739638059665e-06
+crop_Potatoes,5.823034273739662e-06
+"crop_Edible roots and tubers with high starch or inulin content, n.e.c., fresh",5.727481514048026e-06
+"crop_Other stimulant, spice and aromatic crops, n.e.c.",4.894406730960752e-06
+"crop_Other fibre crops, raw, n.e.c.",4.72696579507601e-06
+"crop_Cassava, fresh",4.570320571673918e-06
+crop_Unmanufactured tobacco,3.1931874416753744e-06
+crop_Sorghum,2.6724412063095768e-06
+crop_Avocados,2.563892863273601e-06
+crop_Areca nuts,2.268998483690225e-06
+crop_Tomatoes,1.599193334171204e-06
+"crop_Other fruits, n.e.c.",1.5583124796254852e-06
+"crop_Nutmeg, mace, cardamoms, raw",1.0173700157479472e-06
+"crop_Other vegetables, fresh n.e.c.",9.605705365620714e-07
+"crop_Cloves (whole stems), raw",7.492522853622127e-07
+crop_Millet,7.26532626339157e-07
+crop_Oranges,6.445004248191591e-07
+"crop_Coffee, green",3.704778022928315e-07
+"crop_Cow peas, dry",2.3345649183521046e-07
+crop_Sesame seed,1.538094688708823e-07
+crop_Natural rubber in primary forms,1.203240362434144e-07
+"crop_Pepper (Piper spp.), raw",5.304752911965636e-08
+crop_Soya beans,3.849728412299482e-08
+"crop_Cinnamon and cinnamon-tree flowers, raw",2.189453004839261e-08
+crop_Cocoa beans,1.1936603159469702e-08
+"crop_Beans, dry",3.776400452491655e-09
+district_encoded,0.0

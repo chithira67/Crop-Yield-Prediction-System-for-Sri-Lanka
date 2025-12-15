@@ -7,9 +7,7 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 import folium
 from streamlit_folium import folium_static
-import sys
-sys.path.append(os.path.dirname(__file__))
-from predict import predict_yield, load_model_and_encoders
+from src.predict import predict_yield, load_model_and_encoders
 import warnings
 warnings.filterwarnings('ignore')
 

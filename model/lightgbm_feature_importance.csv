@@ -1,0 +1,68 @@
+feature,importance
+yield_rolling_mean_3,207
+crop_encoded,196
+yield_rolling_std_3,137
+yield_lag1,65
+yield_lag2,61
+year,37
+year_cos,9
+year_sin,2
+year_normalized,0
+district_encoded,0
+crop_Areca nuts,0
+crop_Avocados,0
+"crop_Beans, dry",0
+crop_Cabbages,0
+crop_Cantaloupes and other melons,0
+crop_Carrots and turnips,0
+"crop_Cashew nuts, in shell",0
+"crop_Cassava, fresh",0
+crop_Cauliflowers and broccoli,0
+"crop_Chillies and peppers, green (Capsicum spp. and Pimenta spp.)",0
+"crop_Cinnamon and cinnamon-tree flowers, raw",0
+"crop_Cloves (whole stems), raw",0
+crop_Cocoa beans,0
+"crop_Coconuts, in shell",0
+"crop_Coffee, green",0
+"crop_Cow peas, dry",0
+crop_Cucumbers and gherkins,0
+"crop_Edible roots and tubers with high starch or inulin content, n.e.c., fresh",0
+crop_Eggplants (aubergines),0
+"crop_Ginger, raw",0
+"crop_Groundnuts, excluding shelled",0
+crop_Leeks and other alliaceous vegetables,0
+crop_Lemons and limes,0
+crop_Maize (corn),0
+"crop_Mangoes, guavas and mangosteens",0
+crop_Millet,0
+crop_Mustard seed,0
+crop_Natural rubber in primary forms,0
+"crop_Nutmeg, mace, cardamoms, raw",0
+crop_Okra,0
+"crop_Onions and shallots, dry (excluding dehydrated)",0
+crop_Oranges,0
+"crop_Other beans, green",0
+"crop_Other fibre crops, raw, n.e.c.",0
+"crop_Other fruits, n.e.c.",0
+"crop_Other stimulant, spice and aromatic crops, n.e.c.",0
+"crop_Other vegetables, fresh n.e.c.",0
+"crop_Pepper (Piper spp.), raw",0
+crop_Pineapples,0
+crop_Plantains and cooking bananas,0
+crop_Potatoes,0
+"crop_Pumpkins, squash and gourds",0
+crop_Rice,0
+crop_Sesame seed,0
+crop_Sorghum,0
+crop_Soya beans,0
+crop_Sugar cane,0
+crop_Sweet potatoes,0
+crop_Tea leaves,0
+crop_Tomatoes,0
+crop_Unmanufactured tobacco,0
+rainfall,0
+temperature,0
+humidity,0
+rainfall_temp_interaction,0
+temp_humidity_interaction,0
+rainfall_humidity_interaction,0

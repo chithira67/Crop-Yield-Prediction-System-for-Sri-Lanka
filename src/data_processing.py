@@ -126,35 +126,31 @@ def encode_categorical_features(df):
     return df, crop_encoder, district_encoder
 
 
-def add_weather_features(df):
+def add_weather_features(df, use_api: bool = False, api_key: str = None):
     """
-    Add placeholder weather features that will be used in predictions
-    These are placeholders - in real scenario, these would come from weather API
+    Add weather features using real API or historical estimates
     
     Args:
         df: DataFrame
+        use_api: Whether to use OpenWeatherMap API (requires API key)
+        api_key: OpenWeatherMap API key (optional, can use env var)
         
     Returns:
         DataFrame with weather features
     """
-    # Generate synthetic weather data based on year and crop (for demonstration)
-    np.random.seed(42)
-    
-    # Rainfall (mm) - varies by year and crop type
-    df['rainfall'] = np.random.normal(1500, 300, len(df))
-    df['rainfall'] = df['rainfall'].clip(800, 2500)
-    
-    # Temperature (Celsius) - varies by year
-    df['temperature'] = np.random.normal(27, 2, len(df))
-    df['temperature'] = df['temperature'].clip(22, 32)
-    
-    # Humidity (%) - varies by year
-    df['humidity'] = np.random.normal(75, 5, len(df))
-    df['humidity'] = df['humidity'].clip(60, 90)
-    
-    # Interaction features
-    df['rainfall_temp_interaction'] = df['rainfall'] * df['temperature']
-    df['temp_humidity_interaction'] = df['temperature'] * df['humidity']
+    try:
+        from src.weather_api import add_weather_features_real
+        # Use real weather API integration
+        df = add_weather_features_real(df, use_api=use_api, api_key=api_key)
+    except ImportError:
+        # Fallback to synthetic data if weather_api not available
+        import numpy as np
+        np.random.seed(42)
+        df['rainfall'] = np.random.normal(1500, 300, len(df)).clip(800, 2500)
+        df['temperature'] = np.random.normal(27, 2, len(df)).clip(22, 32)
+        df['humidity'] = np.random.normal(75, 5, len(df)).clip(60, 90)
+        df['rainfall_temp_interaction'] = df['rainfall'] * df['temperature']
+        df['temp_humidity_interaction'] = df['temperature'] * df['humidity']
     
     return df
 
@@ -185,7 +181,9 @@ def scale_numeric_features(df, numeric_cols, scaler=None, fit=True):
 
 def process_data(input_path='data/raw/crop_yield_data.csv', 
                  output_path='data/processed/features.csv',
-                 save_encoders=True):
+                 save_encoders=True,
+                 use_weather_api=False,
+                 weather_api_key=None):
     """
     Main function to process raw data through entire pipeline
     
@@ -216,8 +214,8 @@ def process_data(input_path='data/raw/crop_yield_data.csv',
     # Encode categorical features
     df, crop_encoder, district_encoder = encode_categorical_features(df)
     
-    # Add weather features
-    df = add_weather_features(df)
+    # Add weather features (using real API or historical estimates)
+    df = add_weather_features(df, use_api=use_weather_api, api_key=weather_api_key)
     
     # Fill NaN values in lag features with mean
     lag_cols = ['yield_lag1', 'yield_lag2', 'yield_rolling_std_3']

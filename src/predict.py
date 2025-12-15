@@ -145,38 +145,66 @@ def prepare_prediction_features(crop, district, year, rainfall, temperature,
                     feature_row[col] = 0
             
             # Select and reorder columns
-            feature_vector = feature_row[feature_cols].values
+            feature_row_ordered = feature_row[feature_cols].copy()
             
-            # Scale if scaler is available
-            if scaler is not None:
-                feature_vector = scaler.transform(feature_vector)
+            # Scale only numeric features (same as in training)
+            numeric_cols = ['year', 'yield_lag1', 'yield_lag2', 'yield_rolling_mean_3', 
+                           'yield_rolling_std_3', 'year_sin', 'year_cos', 'year_normalized',
+                           'rainfall', 'temperature', 'humidity', 'rainfall_temp_interaction',
+                           'temp_humidity_interaction']
+            
+            # Only scale columns that exist and are numeric
+            numeric_cols_to_scale = [col for col in numeric_cols if col in feature_row_ordered.columns]
+            
+            # Create a copy for scaling
+            feature_row_scaled = feature_row_ordered.copy()
+            
+            # Scale numeric features if scaler is available
+            if scaler is not None and numeric_cols_to_scale:
+                feature_row_scaled[numeric_cols_to_scale] = scaler.transform(
+                    feature_row_ordered[numeric_cols_to_scale]
+                )
+            
+            # Convert to numpy array
+            feature_vector = feature_row_scaled.values
             
             return feature_vector
         else:
             # Fallback: create feature vector from base features only
             # This won't work perfectly if one-hot encoding was used, but it's a fallback
-            feature_vector = np.array([
-                base_features['year'],
-                base_features['crop_encoded'],
-                base_features['district_encoded'],
-                base_features['yield_lag1'],
-                base_features['yield_lag2'],
-                base_features['yield_rolling_mean_3'],
-                base_features['yield_rolling_std_3'],
-                base_features['year_sin'],
-                base_features['year_cos'],
-                base_features['year_normalized'],
-                base_features['rainfall'],
-                base_features['temperature'],
-                base_features['humidity'],
-                base_features['rainfall_temp_interaction'],
-                base_features['temp_humidity_interaction']
-            ]).reshape(1, -1)
+            feature_dict = {
+                'year': base_features['year'],
+                'crop_encoded': base_features['crop_encoded'],
+                'district_encoded': base_features['district_encoded'],
+                'yield_lag1': base_features['yield_lag1'],
+                'yield_lag2': base_features['yield_lag2'],
+                'yield_rolling_mean_3': base_features['yield_rolling_mean_3'],
+                'yield_rolling_std_3': base_features['yield_rolling_std_3'],
+                'year_sin': base_features['year_sin'],
+                'year_cos': base_features['year_cos'],
+                'year_normalized': base_features['year_normalized'],
+                'rainfall': base_features['rainfall'],
+                'temperature': base_features['temperature'],
+                'humidity': base_features['humidity'],
+                'rainfall_temp_interaction': base_features['rainfall_temp_interaction'],
+                'temp_humidity_interaction': base_features['temp_humidity_interaction']
+            }
             
-            if scaler is not None:
-                feature_vector = scaler.transform(feature_vector)
+            feature_df = pd.DataFrame([feature_dict])
             
-            return feature_vector
+            # Scale only numeric features
+            numeric_cols = ['year', 'yield_lag1', 'yield_lag2', 'yield_rolling_mean_3', 
+                           'yield_rolling_std_3', 'year_sin', 'year_cos', 'year_normalized',
+                           'rainfall', 'temperature', 'humidity', 'rainfall_temp_interaction',
+                           'temp_humidity_interaction']
+            numeric_cols_to_scale = [col for col in numeric_cols if col in feature_df.columns]
+            
+            if scaler is not None and numeric_cols_to_scale:
+                feature_df[numeric_cols_to_scale] = scaler.transform(
+                    feature_df[numeric_cols_to_scale]
+                )
+            
+            return feature_df.values
     
     except Exception as e:
         print(f"Error preparing features: {str(e)}")
